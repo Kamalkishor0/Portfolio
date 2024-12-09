@@ -66,35 +66,31 @@ project.addEventListener('click', (event) =>{
       .catch(error => console.error('Error loading content:', error));
    
 })
-// Add the following JavaScript to your existing script.js
-// document.addEventListener('DOMContentLoaded', () => {
-//     let profileElement = document.getElementById('profile');
+Add the following JavaScript to your existing script.js
+document.addEventListener('DOMContentLoaded', () => {
+    let profileElement = document.getElementById('profile');
 
-//     profileElement.addEventListener('mousemove', (event) => {
-//         let rect = profileElement.getBoundingClientRect();
-//         let x = event.clientX - rect.left;
-//         let y = event.clientY - rect.top;
+    profileElement.addEventListener('mousemove', (event) => {
+        let rect = profileElement.getBoundingClientRect();
+        let x = event.clientX - rect.left;
+        let y = event.clientY - rect.top;
+    });
+});
 
-//         // You can use x and y to determine the cursor position relative to the profile image
-//         // For example, you can console.log(x, y) to see the values and adjust the logic accordingly.
-//     });
-// });
+Add the following JavaScript to your existing script.js
+document.addEventListener('DOMContentLoaded', () => {
+    let animatedLink = document.querySelector('.animated-link');
 
-// Add the following JavaScript to your existing script.js
-// document.addEventListener('DOMContentLoaded', () => {
-//     let animatedLink = document.querySelector('.animated-link');
+    animatedLink.addEventListener('mousemove', (event) => {
+        let rect = animatedLink.getBoundingClientRect();
+        let x = event.clientX - rect.left;
+        let y = event.clientY - rect.top;
 
-//     animatedLink.addEventListener('mousemove', (event) => {
-//         let rect = animatedLink.getBoundingClientRect();
-//         let x = event.clientX - rect.left;
-//         let y = event.clientY - rect.top;
-
-//         // Adjust the logic based on your requirements
-//         if (x >= 0 && x <= rect.width && y >= 0 && y <= rect.height) {
-//             animatedLink.classList.add('hovered');
-//         } else {
-//             animatedLink.classList.remove('hovered');
-//         }
-//     });
-// });
+        if (x >= 0 && x <= rect.width && y >= 0 && y <= rect.height) {
+            animatedLink.classList.add('hovered');
+        } else {
+            animatedLink.classList.remove('hovered');
+        }
+    });
+});
 
