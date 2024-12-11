@@ -1,96 +1,50 @@
-// For home button
-document.addEventListener('DOMContentLoaded', (event) => {
-let element = document.querySelector('.text');
-let home = document.getElementById('home');
-
-home.addEventListener('click', (event) =>{
-      event.preventDefault();
-      fetch('index.html')
-      .then(response => {
-          if (!response.ok) {
-              throw new Error('Network response was not ok');
-          }
-          return response.text();
-      })
-      .then(htmlContent => {
-          // Update the inner HTML of the element with the loaded content
-          element.innerHTML = htmlContent;
-      })
-      .catch(error => console.error('Error loading content:', error));
-   
-})
-})
-
-
-// For resume button
-document.addEventListener('DOMContentLoaded', (event) => {
-let element2 = document.querySelector('.text');
-let resume = document.getElementById('resume');
-
-resume.addEventListener('click', (event) =>{
-    document.querySelector('.profile').style.display = 'none';
-      event.preventDefault();
-      fetch('resume.html')
-      .then(response => {
-          if (!response.ok) {
-              throw new Error('Network response was not ok');
-          }
-          return response.text();
-      })
-      .then(htmlContent => {
-          // Update the inner HTML of the element with the loaded content
-          element2.innerHTML = htmlContent;
-      })
-      .catch(error => console.error('Error loading content:', error));
-   
-    })
-})
-
-      let element3 = document.querySelector('.text');
-let project = document.getElementById('projects');
-
-project.addEventListener('click', (event) =>{
-    document.querySelector('.profile').style.display = 'none';
-      event.preventDefault();
-      fetch('project.html')
-      .then(response => {
-          if (!response.ok) {
-              throw new Error('Network response was not ok');
-          }
-          return response.text();
-      })
-      .then(htmlContent => {
-          // Update the inner HTML of the element with the loaded content
-          element3.innerHTML = htmlContent;
-      })
-      .catch(error => console.error('Error loading content:', error));
-   
-})
-Add the following JavaScript to your existing script.js
 document.addEventListener('DOMContentLoaded', () => {
-    let profileElement = document.getElementById('profile');
+    // Select common elements
+    const element = document.querySelector('.text');
+    const profile = document.querySelector('.profile');
+    const home = document.getElementById('home'); // Home button
+    const resume = document.getElementById('resume'); // Resume button
+    const project = document.getElementById('projects'); // Projects button
 
-    profileElement.addEventListener('mousemove', (event) => {
-        let rect = profileElement.getBoundingClientRect();
-        let x = event.clientX - rect.left;
-        let y = event.clientY - rect.top;
-    });
+    // Helper function to fetch and update content
+    const loadContent = (url) => {
+        fetch(url)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`Failed to load ${url}: ${response.statusText}`);
+                }
+                return response.text();
+            })
+            .then(htmlContent => {
+                element.innerHTML = htmlContent; // Update content
+            })
+            .catch(error => console.error(`Error loading ${url}:`, error));
+    };
+
+    // Event listener for Home button
+    if (home) {
+        home.addEventListener('click', (event) => {
+            event.preventDefault(); // Prevent default link behavior
+            profile.style.display = ''; // Ensure profile is visible
+            loadContent('index.html'); // Load home content
+        });
+    }
+
+    // Event listener for Resume button
+    if (resume) {
+        resume.addEventListener('click', (event) => {
+            event.preventDefault(); // Prevent default link behavior
+            profile.style.display = 'none'; // Hide profile
+            loadContent('resume.html'); // Load resume content
+        });
+    }
+
+    // Event listener for Projects button
+    if (project) {
+        project.addEventListener('click', (event) => {
+            event.preventDefault(); // Prevent default link behavior
+            profile.style.display = 'none'; // Hide profile
+            loadContent('project.html'); // Load project content
+        });
+    }
 });
-
-Add the following JavaScript to your existing script.js
-document.addEventListener('DOMContentLoaded', () => {
-    let animatedLink = document.querySelector('.animated-link');
-
-    animatedLink.addEventListener('mousemove', (event) => {
-        let rect = animatedLink.getBoundingClientRect();
-        let x = event.clientX - rect.left;
-        let y = event.clientY - rect.top;
-
-        if (x >= 0 && x <= rect.width && y >= 0 && y <= rect.height) {
-            animatedLink.classList.add('hovered');
-        } else {
-            animatedLink.classList.remove('hovered');
-        }
-    });
-});
-
